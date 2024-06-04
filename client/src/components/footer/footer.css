@@ -1,0 +1,15 @@
+.footer{
+  height: 20vh;
+  width: 100%;
+  background-color: #050f14;
+  display: flex;
+  justify-content: center;
+}
+
+.fText{
+  margin: auto;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+

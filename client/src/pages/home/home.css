@@ -1,0 +1,34 @@
+.homeContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background-color: #3D3E3F;
+}
+
+.holder{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 60vh; 
+  text-align: center; 
+}
+
+.plug{
+  font-size: 2em; 
+  font-weight: bold;
+  color: #707273; /* Устанавливает цвет текста */
+  font-family: 'Roboto Condensed', 'Arial Narrow', 'Arial', sans-serif;
+}
+
+.formContainer{
+  position: fixed; /* Задерживает всплытие */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

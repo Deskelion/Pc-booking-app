@@ -1,0 +1,10 @@
+.bookingFrame {
+  max-width: 100%; /* Ограничивает ширину BookingFrame */
+  max-height: 100%; /* Ограничивает высоту BookingFrame */
+}
+
+
+.interactive-elements:hover {
+    cursor: pointer; /* Или используйте другое значение для символа */
+}
+  

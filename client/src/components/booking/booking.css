@@ -1,0 +1,128 @@
+.booking{
+    background-color: #202326;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 600px;
+    max-height: 1024px;
+    margin: auto;
+}
+
+.bHeaderContainer{
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bBodyContainer{
+    background-color: #3D3E3F;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.computerPhoto{
+    width: 100px;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.computerDescription{
+    width: 250px;
+    height: inherit;
+    display: flex;
+    align-items : center;
+    justify-content: center;
+}
+
+.bDescription{
+    color: white;
+}
+
+.bFooterContainer{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;   
+}
+
+.inputContainer{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.timeContainer{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+
+.bInput{
+    margin: 10px 0 10px 0;
+    width: 200px;
+    background-color: #202326;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #00FFFF;
+    border-radius: 5px;
+}
+
+.bInputTime{
+    margin: 10px 0 10px 0;
+    width: 80px;
+    background-color: #202326;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #00FFFF;
+    border-radius: 5px;
+}
+
+.bInputDate{
+    margin: 10px 0 10px 0;
+    width: 200px;
+    background-color: #202326;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #00FFFF;
+    border-radius: 5px;
+}
+
+.closeButton {
+    padding: 10px 20px;
+    background-color: #00FFFF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bButton {
+    margin: 10px 0 10px 0;
+    padding: 10px 20px;
+    background-color: #00FFFF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bButton:hover {
+    background-color: #18A7B5;
+}
