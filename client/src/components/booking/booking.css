@@ -50,7 +50,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;   
+    align-items: center; 
+    gap: 20px;  
 }
 
 .inputContainer{
@@ -62,10 +63,20 @@
 }
 
 .timeContainer{
+    width: 100%;
     color: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.timeInputContainer{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
 
@@ -73,7 +84,8 @@
 
 .bInput{
     margin: 10px 0 10px 0;
-    width: 200px;
+    width: 260px;
+    height: 50px;
     background-color: #202326;
     color: white;
     padding: 10px;
@@ -84,7 +96,8 @@
 
 .bInputTime{
     margin: 10px 0 10px 0;
-    width: 80px;
+    width: 100px;
+    height: 35px;
     background-color: #202326;
     color: white;
     padding: 10px;
@@ -95,7 +108,8 @@
 
 .bInputDate{
     margin: 10px 0 10px 0;
-    width: 200px;
+    width: 245px;
+    height: 35px;
     background-color: #202326;
     color: white;
     padding: 10px;
@@ -114,6 +128,7 @@
 }
 
 .bButton {
+    height: 40px;
     margin: 10px 0 10px 0;
     padding: 10px 20px;
     background-color: #00FFFF;

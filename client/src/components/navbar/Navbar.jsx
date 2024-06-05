@@ -22,28 +22,25 @@ const Navbar = () => {
           {user && user !== null ? (
             <>
               <span style={{ marginRight: "10px" }}>
-                Добрый день, {user.name}!
+                Добрый день, {user.username}!  
               </span>
               <Link
                 to={`/profile/${user._id}`}
                 style={{ color: "inherit", textDecoration: "none" }}
               >
-                <button className="navButton">Ваш профиль</button>
+                <button className="navButton">Профиль</button>
               </Link>
               <button className="navButton" onClick={handleLogout}>
-                Выйти из аккаунта
+                Выйти 
               </button>
             </>
           ) : (
             <>
-              <span style={{ marginRight: "10px" }}>
-                Зарегистрируйтесь прямо сейчас! - {">"}
-              </span>
+              <Link to="/login">
+                <button className="navButton">Вход</button>
+              </Link>
               <Link to="/register">
                 <button className="navButton">Регистрация</button>
-              </Link>
-              <Link to="/login">
-                <button className="navButton">Авторизация</button>
               </Link>
             </>
           )}

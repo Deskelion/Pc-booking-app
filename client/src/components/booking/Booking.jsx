@@ -91,27 +91,35 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
           </div>
         </div>          
         <div className='bFooterContainer'>
-          <div className='inputContainer'>
-            <p>Дата</p>
-            <input type='date' className='bInputDate' value={date} onChange={handleDateChange} />
+          <div className='inputContainer'>            
+            <div>
+              <p>Дата</p>
+              <input type='date' className='bInputDate' value={date} onChange={handleDateChange} />
+            </div>
           </div>
           <div className='timeContainer'>
-            <div className='inputContainer'>
-              <p>Время начала</p>
-              <input type='time' className='bInputTime' value={startTime} onChange={handleStartTimeChange} />
+            <div className='timeInputContainer'>
+              <div>
+                <p>Время начала</p>
+                <input type='time' className='bInputTime' value={startTime} onChange={handleStartTimeChange} />
+              </div>
             </div>
-            <div className='inputContainer'>
-              <p>Время окончания</p>
-              <input type='text' className='bInputTime' value={getEndTime()} readOnly />
+            <div className='timeInputContainer'>
+              <div>
+                <p>Время окончания</p>
+                <input type='text' className='bInputTime' value={getEndTime()} readOnly />
+              </div>
             </div>
           </div>          
           <div className='inputContainer'>
-            <p>Выбор на сколько часов хотите забронировать</p>
-            <select className='bInput' value={duration} onChange={handleDurationChange}>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((hour) => (
-                <option key={hour} value={hour}>{hour} час{hour > 1 ? 'а' : ''}</option>
-              ))}
-            </select>
+            <div>
+              <p>Количство часов</p>
+              <select className='bInput' value={duration} onChange={handleDurationChange}>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((hour) => (
+                  <option key={hour} value={hour}>{hour} час{hour > 1 ? 'а' : ''}</option>
+                ))}
+              </select>
+            </div>
           </div>
           
           <button className='bButton' onClick={() => {changeColor(id); onClose(id); createBookingData();} }>Забронировать</button>

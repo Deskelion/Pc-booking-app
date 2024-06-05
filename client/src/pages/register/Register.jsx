@@ -7,7 +7,10 @@ import axios from "axios";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 
 const Register = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [file, setFile] = useState(null); 
+  const { loading, error, dispatch } = useContext(AuthContext);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -15,14 +18,8 @@ const Register = () => {
     confirmPassword: "",
     dateOfBirth: "",
     phoneNumber: "",
-  });
-  const [passwordError, setPasswordError] = useState("");
-  const [dateError, setDateError] = useState("");
-  const [file, setFile] = useState(null); // State to manage the file upload
-
-  useEffect(() => {
-    setIsActive(true);
-  }, []);
+  }); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({ type: "RESET_ERROR" });
@@ -36,10 +33,7 @@ const Register = () => {
         setPasswordError("");
       }
     }
-  }, [credentials.password, credentials.confirmPassword]);
-
-  const { loading, error, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  }, [credentials.password, credentials.confirmPassword]);  
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -67,8 +61,7 @@ const Register = () => {
         [id]: value,
       }));
     }
-
-};
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -76,11 +69,8 @@ const Register = () => {
       setPasswordError("Пароли не совпадают");
       return;
     }
-
     if (passwordError) return;
-
     setPasswordError("");
-
     dispatch({ type: "REGISTER_START" });
 
     try {
@@ -111,107 +101,85 @@ const Register = () => {
   };
 
   return (
-    <div className={`backgroundcolor ${isActive ? "active" : ""}`}>
-      <div className={`centered ${isActive ? "active" : ""}`}>
-        <div className="logo-container1">
-          <Link to="/">
-            <p>Вернуться</p>
-          </Link>
-        </div>
-        <h1>Регистрация</h1>
-        <form>
-          <div className="txt_fielded">
-            <input type="text" id="username" onChange={handleChange} required />
-            <span></span>
-            <label>Логин</label>
-          </div>
-          <div className="txt_fielded">
-            <input type="email" id="email" onChange={handleChange} required />
-            <span></span>
-            <label>Почта</label>
-          </div>
-          <div className="txt_fielded">
-            <input
-              type="password"
-              className="usernameinput"
-              id="password"
-              onChange={handleChange}
-              required
-            />
-            <span></span>
-            <label>Пароль</label>
-          </div>
-          <div className="txt_fielded">
-            <input
-              type="password"
-              className="usernameinput"
-              id="confirmPassword"
-              onChange={handleChange}
-              required
-            />
-            <span></span>
-            <label>Подтвердите пароль</label>
-          </div>
-          <div className="txt_fielded">
-            {dateError && <span className="error-message1">{dateError}</span>}
-            <input
-              type="date"
-              id="dateOfBirth"
-              onChange={handleChange}
-              required
-            />
-            <span></span>
-            <label>Дата рождения</label>
-          </div>
-          <div className="txt_fielded">
-            <input
-              type="text"
-              id="phoneNumber"
-              onChange={handleChange}
-              required
-            />
-            <span></span>
-            <label>Телефон</label>
-          </div>
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt=""
-            />
-            <div className="formInput">
-              <label htmlFor="file">
-                Фотография: <DriveFolderUploadOutlinedIcon className="icon" />
-              </label>
+    <div className="register">
+      <div className="regHeader">
+        <h1>Регистрация</h1>       
+      </div> 
+      <div className="regBody">
+        <div className="regBodyContainer"> 
+          <div className="regClose">
+            <div className="rbackButton">
+              <Link to="/">
+                <p>Вернуться</p>
+              </Link>
+            </div> 
+          </div>      
+          <form className="rFormContainer">
+            <div className="rInputItem">
+              <label>Логин</label>
+              <input type="text" id="username" onChange={handleChange} required />
+            </div>
+            <div className="rInputItem">
+              <label>Почта</label>
+              <input type="email" id="email" onChange={handleChange} required />
+            </div>            
+            <div className="rInputItem">
+              <label>Пароль</label>
               <input
-                type="file"
-                id="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ display: "none" }}
+                type="password"
+                id="password"
+                onChange={handleChange}
+                required
               />
             </div>
-          </div>
-        </form>
-        <div className="form-actions">
-          <button
-            disabled={loading}
-            onClick={handleClick}
-            className="registerbth"
-          >
-            Зарегистрироваться
-          </button>
-          {passwordError && (
-            <span className="error-message">{passwordError}</span>
-          )}
-          {error && <span className="error-message">{error.message}</span>}
-          <div className="signup_link">
-            Уже зарегистрированы? <Link to="/login">Войти</Link>
+            <div className="rInputItem">
+              <label>Подтвердите пароль</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="rInputItem">
+              <label>Дата рождения</label>
+              <input
+                type="date"
+                id="dateOfBirth"
+                onChange={handleChange}
+                required
+              />
+              {dateError && <span className="errMessage1">{dateError}</span>}
+            </div>
+            <div className="rInputItem">
+              <label>Телефон</label>
+              <input
+                type="text"
+                id="phoneNumber"
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </form>
+          <div className="formActions">
+            <button 
+              disabled={loading}
+              onClick={handleClick}
+              className="regButton">
+              Зарегистрироваться
+            </button>
+            {passwordError && (
+              <span className="errMessage">{passwordError}</span>
+            )}
+            {error && <span className="errMessage">{error.message}</span>}
+            <div className="loginLink">
+              <p>Уже зарегистрированы?</p>
+              <Link to="/login">Войти</Link>
+            </div>
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

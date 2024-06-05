@@ -24,9 +24,6 @@ export const createBooking = async (req, res, next) => {
     const totalTime = moment(endTime, 'HH:mm').diff(moment(startTime, 'HH:mm'), 'hours');
     const amount = roomObj.pricePerHour * totalTime;
 
-    console.log(userObj._id, 'username ')
-    console.log(placeObj._id, 'placename ')
-
     const newBooking = new Booking({
       username: userObj._id,
       placename: placeObj._id,
@@ -72,24 +69,23 @@ export const deleteBooking = async (req, res, next) => {
   }
 };
 
-export const getBooking = async (req, res, next) => {
-  try {
-    const booking = await Booking.findById(req.params.id);
-    res.status(200).json(booking);             
-  } catch (err) {
-    next(err);      
-  }
-};
+// export const getBooking = async (req, res, next) => {
+//   try {
+//     const booking = await Booking.findById(req.params.id);
+//     res.status(200).json(booking);             
+//   } catch (err) {
+//     next(err);      
+//   }
+// };
 
 
 export const getBookingsByUser = async (req, res, next) => {
   try {
-      console.log("ты будешь работать тварь?!");
+      console.log("выводим брони пользователя");
       const { id } = req.params;
-      const bookings = await Booking.find({ username: id }).populate('placename', 'name');
+      const bookings = await Booking.find({ username: id }).populate('placename', 'placename');
       res.status(200).json(bookings);
   } catch (err) {
-      console.log("Да ты заебал!");
       next(err);
   }
 };

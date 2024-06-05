@@ -13,6 +13,7 @@ function EditProfileForm({ setEditMode }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const { data, loading, reFetch } = useFetch(`/users/${id}`);
+  
   useEffect(() => {
     if (!loading && data) {
       setFormData({

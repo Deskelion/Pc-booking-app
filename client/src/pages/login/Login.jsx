@@ -45,48 +45,52 @@ const Login = () => {
   };
 
   return (
-    <div className={`backgroundcolor ${isActive ? "active" : ""}`}>
-      <div className={`logincentered ${isActive ? "active" : ""}`}>
-        <div className="logo-container1">
-          <Link to="/">
-            <p>Вернуться</p>
-          </Link>
-        </div>
-        <h1>Авторизация</h1>
-        <form method="">
-          <div className="txt_fielded">
-            <input type="text" id="username" onChange={handleChange} required />
-            <span></span>
-            <label>Логин</label>
-          </div>
-          <div className="txt_fielded">
-            <input
-              type="password"
-              className="usernameinput"
-              id="password"
-              onChange={handleChange}
-              required
-            />
-            <span></span>
-            <label>Пароль</label>
-          </div>
-        </form>
-        <div className="form-actions">
-          <div>
-            <button
-              disabled={loading}
-              onClick={handleClick}
-              className="loginbth"
-            >
-              Авторизация
-            </button>
-            {error && <span className="error-message">{error.message}</span>}
-          </div>
-          <div className="pass">
-            <Link to="/forgotpassword">Забыли пароль?</Link>
-          </div>
-          <div className="signup_link">
-            Еще не зарегистрированы? <Link to="/register">Регистрация</Link>
+    <div className="login">    
+      <div className="logBody">
+        <div className="logTitle">
+          <h1>Вход</h1>  
+        </div>        
+        <div className="logBodyContainer">
+          <div className="logClose">
+            <div className="lBackBuuton">
+              <Link to="/">
+                <p>Вернуться</p>
+              </Link>
+            </div>
+          </div>        
+          <form className="lFormContainer">
+            <div className="lInputItem">
+              <label>Логин</label>
+              <input type="text" id="username" onChange={handleChange} required />
+           </div>
+            <div className="lInputItem">
+              <label>Пароль</label>
+              <input
+                type="password"
+                className="usernameinput"
+                id="password"
+                onChange={handleChange}
+                required
+              />  
+            </div>
+          </form>
+          <div className="formActions">
+            <div>
+              <button 
+                disabled={loading}
+                onClick={handleClick}
+                className="loginButton">
+                Авторизация
+              </button>
+              {error && <span className="error-message">{error.message}</span>}
+            </div>
+            <div className="pass">
+              <Link to="/forgotpassword">Забыли пароль?</Link>
+            </div>
+            <div className="signupLink">
+              <p>Еще не зарегистрированы?</p>
+              <Link to="/register">Регистрация</Link>
+            </div>
           </div>
         </div>
       </div>

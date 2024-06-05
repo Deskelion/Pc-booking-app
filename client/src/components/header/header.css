@@ -45,6 +45,16 @@
   gap: 10px;
 }
 
+.headerListItem a {
+  text-decoration: none;
+  color: white;
+}
+
+.headerListItem a :hover {
+  text-decoration: none;
+  color: #00FFFF; 
+}
+
 .headerLastPart {
   margin-right: 50px;
   height: inherit;

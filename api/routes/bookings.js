@@ -1,6 +1,6 @@
 import express from "express";
 import { isAdmin, verifyUser } from "../utils/verifyToken.js";
-import { createBooking, deleteBooking, getBooking, getBookings, getBookingsByUser, updateBooking } from "../controllers/booking.js";
+import { createBooking, deleteBooking, getBookings, getBookingsByUser, updateBooking } from "../controllers/booking.js";
 
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.put("/:id", isAdmin, updateBooking);
 //Delete
 router.delete("/:id", isAdmin, deleteBooking);
 //Get
-router.get("/:id", getBooking);
+// router.get("/:id", getBooking);
 
 
 //Get all

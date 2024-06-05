@@ -1,7 +1,7 @@
 import "./profile.css";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
@@ -13,11 +13,10 @@ import moment from "moment"; // Импортируем moment
 function ProfilePage() {
   const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [editMode, setEditMode] = useState(false);
-  const [activeTab, setActiveTab] = useState("info");
   const location = useLocation();
   const id = user._id; // Получаем идентификатор пользователя из контекста
   const [bookings, setBookings] = useState([]);
+  const [editMode, setEditMode] = useState(false);
 
   const handleGoBack = () => {
     navigate("/");
@@ -39,9 +38,11 @@ function ProfilePage() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        console.log(id, 'трай блок сработал')
-        const response = await axios.get(`/bookings/${id}`);
+        
+        const response = await axios.get(`/bookings/userbookings/${id}`);
         setBookings(response.data);
+        console.log(response, 'трай блок сработал')
+        
       } catch (error) {
         console.error("Ошибка при получении бронирований:", error);
       }
@@ -49,59 +50,57 @@ function ProfilePage() {
 
     fetchBookings();
   }, [id]);
+  console.log(bookings, 'буинг')
 
   return (
-    <div className="container">
+    <div className="profile">
       <Navbar />
-      <div className="profile-header">
-        <h1>Профиль</h1>
-      </div>
-      <div className="button-div">
-        <button className="button back-button" onClick={handleGoBack}>
-          Назад
-        </button>
-      </div>
-      <div className="profile-content">
-        {activeTab === "info" ? (
-          <>
-            {editMode ? (
-              <EditProfileForm setEditMode={setEditMode} />
-            ) : (
-              <>
-                <UserInfo />
-                <br />
-                <button className="button" onClick={() => setEditMode(true)}>
-                  Редактировать профиль
-                </button>
-                <button
-                  className="button delete-button"
-                  onClick={handleDeleteAccount}
-                >
-                  Удалить аккаунт
-                </button>
-              </>
-            )}
-          </>
-        ) : (
-          <div>
-            <h2>Мои бронирования</h2>
-            {bookings.length > 0 ? (
-              <ul>
-                {bookings.map((booking) => (
-                  <li key={booking._id}>
-                    <div><strong>Место:</strong> {booking.placename.name}</div>
-                    <div><strong>Дата:</strong> {moment(booking.date).format('DD/MM/YYYY')}</div>
-                    <div><strong>Время:</strong> {booking.startTime} - {booking.endTime}</div>
-                    <div><strong>Общее время:</strong> {booking.totalTime} часов</div>
-                    <div><strong>Сумма:</strong> {booking.amount} руб.</div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>У вас нет бронирований.</p>
-            )}
+      <div className="UserInfo">
+        <div className="profileClose">
+          <div className="pBackButton">
+            <Link to="/">
+              <p>Вернуться</p>
+            </Link>
           </div>
-        )}
+        </div>
+        <h2>Профиль</h2>
+        <UserInfo />
+        <div className="userButtun">
+          <button 
+            className="editButton" 
+            onClick={() => setEditMode(true)}>
+              Редактировать профиль
+          </button>
+          <button
+            className="deleteButton"
+            onClick={handleDeleteAccount}>
+              Удалить аккаунт
+          </button>
+        </div>
+        <h2>Мои бронирования</h2>
+        <div className="BookingInfo">
+        <p>Место:</p>
+        <p>Дата:</p>
+        <p>Время:</p> 
+        <p>Общее время:</p>
+        <p>Сумма:</p>
+        </div>         
+          
+          {bookings.length > 0 ? (
+            <div className="pBookingHolder">
+              {bookings.map((booking) => (
+                <div className="pBookingContainer" key={booking._id}>
+                  <div className="pBookingItem"> {booking.placename.placename}</div>
+                  <div className="pBookingItem">{moment(booking.date).format('DD/MM/YYYY')}</div>
+                  <div className="pBookingItem"> {booking.startTime} - {booking.endTime}</div>
+                  <div className="pBookingItem"> {booking.totalTime} ч.</div>
+                  <div className="pBookingItem"> {booking.amount} руб.</div>
+                </div>
+              ))}
+            </div>          
+          ) : (
+            <p>У вас нет бронирований.</p>
+          )}
       </div>
       <Footer />
     </div>

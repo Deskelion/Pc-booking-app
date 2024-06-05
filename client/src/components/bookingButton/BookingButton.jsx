@@ -2,8 +2,8 @@ import "./bookingButton.css";
 
 const BookingButton = ({onClick}) => {
   return (
-    <div className="booking-button-container">
-        <button className="booking-button" onClick={onClick}>Забронировать</button>
+    <div className="bookingButtonContainer">
+        <button className="bookingButton" onClick={onClick}>Забронировать</button>
     </div>
   );
 };
