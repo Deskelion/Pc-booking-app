@@ -47,11 +47,8 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
         placeName: placename, 
         date: date, 
         startTime: startTime,
-        endTime : endTimeHere,
-
+        endTime : endTimeHere
       };
-      console.log(bookingData)
-
 
       const response = await axios.post('bookings/create', bookingData, {
         headers: {

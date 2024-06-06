@@ -30,6 +30,8 @@ const Datatable = ({ columns }) => {
     } catch (err) {}
   };
 
+  console.log(data);
+
   const actionColumn = [
     {
       field: "action",
@@ -38,6 +40,7 @@ const Datatable = ({ columns }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
+            {path !== "bookings" && (
             <div>
               <Link
                 to={`/${path}/${params.row._id}`}
@@ -46,6 +49,7 @@ const Datatable = ({ columns }) => {
                 <div className="viewButton">Посмотреть</div>
               </Link>
             </div>
+            )}
             {path !== "users" && path !== "bookings" && (
               <div>
                 <Link
@@ -70,12 +74,6 @@ const Datatable = ({ columns }) => {
 
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        {path}
-        <Link to={`/${path}/new`} className="link">
-          Добавить
-        </Link>
-      </div>
       <DataGrid
         className="datagrid"
         rows={list}

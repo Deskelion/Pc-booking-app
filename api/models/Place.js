@@ -14,10 +14,10 @@ const PlaceSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-}, { timestamps: true });
+},);
 
 PlaceSchema.statics.findByName = function (name) {
-  console.log("Searching for place with name:", name); // Добавляем вывод в консоль
+  console.log("Searching for place with name:", name); 
   return this.findOne({ placename: name });
 };
 

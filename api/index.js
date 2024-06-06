@@ -17,7 +17,7 @@ dotenv.config()
 const connect = async () => {
     try {
     await mongoose.connect(process.env.MONGO);
-    console.log("Успешно подключено к базе данных")
+    console.log("Подключено к базе данных")
   } catch (error) {
     throw error
   }
@@ -48,7 +48,8 @@ app.use((err,req,res,next) => {
     })
   })
 
-app.listen(8900, () => {
+  app.listen(8900, () => {
     connect()
-    console.log("Подключено к бэкенду.")
+    console.log("Подключено к серверу.")
 })
+

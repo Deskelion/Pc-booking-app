@@ -80,7 +80,7 @@ const Login = () => {
                 disabled={loading}
                 onClick={handleClick}
                 className="loginButton">
-                Авторизация
+                Вход
               </button>
               {error && <span className="error-message">{error.message}</span>}
             </div>

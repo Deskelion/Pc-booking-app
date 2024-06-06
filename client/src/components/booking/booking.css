@@ -119,6 +119,7 @@
 }
 
 .closeButton {
+    margin: 0;
     padding: 10px 20px;
     background-color: #00FFFF;
     color: black;

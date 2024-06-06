@@ -37,8 +37,7 @@ function ProfilePage() {
 
   useEffect(() => {
     const fetchBookings = async () => {
-      try {
-        
+      try {        
         const response = await axios.get(`/bookings/userbookings/${id}`);
         setBookings(response.data);
         console.log(response, 'трай блок сработал')
@@ -47,10 +46,9 @@ function ProfilePage() {
         console.error("Ошибка при получении бронирований:", error);
       }
     };
-
     fetchBookings();
   }, [id]);
-  console.log(bookings, 'буинг')
+  console.log(bookings, 'мы получили данные о бронировании с БД')
 
   return (
     <div className="profile">
@@ -66,11 +64,6 @@ function ProfilePage() {
         <h2>Профиль</h2>
         <UserInfo />
         <div className="userButtun">
-          <button 
-            className="editButton" 
-            onClick={() => setEditMode(true)}>
-              Редактировать профиль
-          </button>
           <button
             className="deleteButton"
             onClick={handleDeleteAccount}>
@@ -95,11 +88,15 @@ function ProfilePage() {
                   <div className="pBookingItem"> {booking.startTime} - {booking.endTime}</div>
                   <div className="pBookingItem"> {booking.totalTime} ч.</div>
                   <div className="pBookingItem"> {booking.amount} руб.</div>
+                  <div className="pBookingItem"> Отменить </div>
                 </div>
               ))}
             </div>          
           ) : (
-            <p>У вас нет бронирований.</p>
+            <div className="pBookingHolder">
+               <p>У вас нет бронирований.</p>
+            </div>
+
           )}
       </div>
       <Footer />

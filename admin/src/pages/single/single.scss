@@ -43,7 +43,7 @@
           }
           
           .backButton:hover {
-            background-color: darkcyan;
+            background-color: darkblue;
           }
           
           .editButton,
@@ -67,6 +67,12 @@
             background-color: red;
             color: white;
           }
+
+          .backButton {
+            background-color: blue;
+            color: white;
+          }
+          
           
           .editButton:hover,
           .deleteButton:hover {
@@ -114,7 +120,7 @@
                 font-size: 14px;
                 
                 .available {
-                  color: green;
+                  color: blue;
                 }
                 
                 .unavailable {

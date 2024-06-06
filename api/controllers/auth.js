@@ -22,11 +22,11 @@ export const register = async (req, res, next) => {
         let errorMessage = err.message;
         if (err.code === 11000 && err.keyPattern) {
             if(err.keyPattern.username){
-                errorMessage = "Данное имя пользователя занято.";
+                errorMessage = "Имя пользователя занято.";
             } 
             else if (err.keyPattern.email) 
             {
-                errorMessage = "Данный адрес электронной почты уже используется."
+                errorMessage = "Такой e-mail уже используется."
             }
             else if (err.keyPattern.phoneNumber)
             {

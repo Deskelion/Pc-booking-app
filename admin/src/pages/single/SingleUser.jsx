@@ -45,7 +45,7 @@ const SingleUser = () => {
             <div className="header">
               <h1 className="title">Информация о пользователе</h1>
               <Link to="/users" className="backButton">
-                Назад к списку пользователей
+                Назад
               </Link>
             </div>
             <div className="item">
@@ -53,32 +53,20 @@ const SingleUser = () => {
               <div className="details">
                 <h1 className="itemTitle">{data.username}</h1>
                 <div className="detailItem">
-                  <span className="itemKey">ФИО:</span>
-                  <span className="itemValue">
-                    {data.CustomerSurname +
-                      " " +
-                      data.CustomerName +
-                      " " +
-                      data.CustomerPatronymic}
-                  </span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Дата рождения:</span>
+                  <span className="itemValue">{data.dateOfBirth}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Почта:</span>
                   <span className="itemValue">{data.email}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Дата рождения:</span>
-                  <span className="itemValue">{formattedDate}</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Пол:</span>
-                  <span className="itemValue">
-                    {data.CustomerGender === true ? "Мужской" : "Женский"}
-                  </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Номер телефона:</span>
-                  <span className="itemValue">{data.PhoneNumber}</span>
+                  <span className="itemValue">{data.phoneNumber}</span>
                 </div>
                 <div className="buttons">
                   <div className="buttonWrapper">

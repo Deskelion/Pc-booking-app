@@ -14,8 +14,6 @@ router.put("/:id", isAdmin, updateBooking);
 router.delete("/:id", isAdmin, deleteBooking);
 //Get
 // router.get("/:id", getBooking);
-
-
 //Get all
 router.get("/", isAdmin, getBookings);
 
