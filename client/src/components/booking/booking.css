@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-.bBodyContainer{
+.computerContainer{
     background-color: #3D3E3F;
     height: 150px;
     display: flex;
@@ -41,8 +41,12 @@
     justify-content: center;
 }
 
-.bDescription{
+.textDescription{
     color: white;
+    width: 200px; /* Установите нужную ширину контейнера */
+    height: 140px;
+    overflow: hidden; /* Обрезает содержимое, выходящее за пределы контейнера */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце обрезанного текста */
 }
 
 .bFooterContainer{

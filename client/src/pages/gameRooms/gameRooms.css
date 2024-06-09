@@ -1,0 +1,18 @@
+.grContainer {
+    height: auto;
+    background-color: #3D3E3F;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grHolder{
+    height: inherit;
+
+}
+
+.roomsContainer{
+
+}

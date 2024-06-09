@@ -11,10 +11,10 @@ router.post("/create", verifyUser, createBooking);
 //Update
 router.put("/:id", isAdmin, updateBooking);
 //Delete
-router.delete("/:id", isAdmin, deleteBooking);
+router.delete("/:id", verifyUser, deleteBooking);
 //Get
 // router.get("/:id", getBooking);
 //Get all
-router.get("/", isAdmin, getBookings);
+router.get("/", getBookings);
 
 export default router;

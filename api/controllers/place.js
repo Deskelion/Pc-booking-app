@@ -5,8 +5,7 @@ export const createPlace = async (req, res, next) => {
     const placeId = req.params.placeid; 
     const newPlaceData = {
        ...req.body,
-        desc: req.body.desc || 'Default description',
-        deviceNumber: req.body.deviceNumber || 0,
+        desc: req.body.desc || 'Default description',Ы
     };
     const newPlace = new Place(newPlaceData);
 
@@ -64,10 +63,26 @@ export const getPlace = async (req,res,next) => {
         next(err);      
     }
 };
+
 export const getPlaces = async (req,res,next) => {
     try {
         const places = await Place.find();
         res.status(200).json(places);       
+    } catch (err) {
+        next(err);      
+    }
+};
+
+export const getPlaceByPlacename = async (req, res, next) => {
+    try {
+        
+        const { placename } = req.params; 
+        console.log("Received placename:", placename);
+        const place = await Place.findOne({ placename });
+        if (!place) {
+            return res.status(404).json({ message: 'Место не найдено' });
+        }
+        res.status(200).json(place);     
     } catch (err) {
         next(err);      
     }

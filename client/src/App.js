@@ -8,7 +8,9 @@ import Login from "./pages/login/Login";
 import ProfilePage from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
-import EditProfileForm from "./pages/profile/EditForm/EditProfileForm";
+import GameRooms from "./pages/gameRooms/GameRooms";
+import News from "./pages/news/News";
+import Prices from "./pages/prices/Prices";
 
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
         <Route path="/profile/:userid" element={<ProfilePage/>}/>
-        <Route path="/editprofile/:userid" element={<EditProfileForm/>}/>
+        <Route path="/rooms" element={<GameRooms/>}/>
+        <Route path="/prices" element={<Prices/>}/>
+        <Route path="/news" element={<News/>}/>
       </Routes>
     </BrowserRouter>
   );

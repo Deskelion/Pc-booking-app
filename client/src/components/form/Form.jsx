@@ -14,7 +14,7 @@ const Form = ({ setShowForm }) => {
 
   const changeColor = (id) => {
     console.log(`Changing color of path with ID: ${id}`);
-    document.getElementById(id).style.fill = '#0E6B74';
+    document.getElementById(id).style.fill = '#F6768E';
   };
 
   return (

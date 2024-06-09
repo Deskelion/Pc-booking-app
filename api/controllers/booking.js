@@ -69,6 +69,21 @@ export const deleteBooking = async (req, res, next) => {
   }
 };
 
+// export const deleteBookingByUser = async (req, res, next) => {
+//   const userId = req.params.userId;
+//   try { 
+//     const deletedBookings = await Booking.deleteMany({ username: userId });
+
+//     if (deletedBookings.deletedCount === 0) {
+//       return res.status(404).json({ message: 'Бронирования для данного пользователя не найдены.' });
+//     }
+
+//     res.status(200).json({ message: 'Бронирования пользователя успешно удалены.'});
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 // export const getBooking = async (req, res, next) => {
 //   try {
 //     const booking = await Booking.findById(req.params.id);
@@ -77,7 +92,6 @@ export const deleteBooking = async (req, res, next) => {
 //     next(err);      
 //   }
 // };
-
 
 export const getBookingsByUser = async (req, res, next) => {
   try {

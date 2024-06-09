@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import "./booking.css";
 import { ReactComponent as Pc } from '../../assets/Pc.svg';
@@ -9,6 +9,7 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [duration, setDuration] = useState(1);
+  const [place, setPlace] = useState([]);
   const navigate = useNavigate()
 
   const { user, dispatch } = useContext(AuthContext);
@@ -31,11 +32,16 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
     return endTime.toTimeString().slice(0, 5);
   };
 
-  const endTimeHere = getEndTime();;
-
+  const endTimeHere = getEndTime();
 
   const createBookingData = async () => {
     try {
+
+      if (!user) {
+        alert('Для бронирования вы должны быть авторизвоаны');// Перенаправляем на страницу входа
+        window.location.href = '/login';
+        return;
+    }
       const username = user?._id;
       const placename = id;
       const roomTitle = exAtr;
@@ -58,6 +64,7 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
 
       if (response.status === 200) {
         console.log('Бронирование успешно создано');
+        alert('Место успешно забронировано');
         // Здесь можно добавить логику для перенаправления пользователя или отображения сообщения об успехе
       } else {
         console.error('Ошибка при создании бронирования');
@@ -65,6 +72,22 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
     } catch (error) {
     }
   };
+
+  useEffect(() => {
+    const getPlace = async () => {
+      try {
+        const response = await axios.get(`/places/name/${id}`); 
+        if (response.data) {
+          setPlace(response.data); 
+        }
+      } catch (error) {
+        console.error("Ошибка при получении места:", error);
+      }
+    };
+    getPlace();
+  }, []);
+
+
 
 
   return (
@@ -74,16 +97,13 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
           <h1>{id}</h1>
           <button className='closeButton' onClick={onClose}>Закрыть</button>
         </div>
-        <div className='bBodyContainer'>
+        <div className='computerContainer'>
           <div className='computerPhoto'>
             <Pc/>
           </div>
           <div className='computerDescription'>
-            <div className='bDescription'>
-              <p>Процессор - AMD Ryzen 5 5600x</p>
-              <p>Видеокарта - NVIDIA GeForce RTX 3060</p>
-              <p>Оперативка - XPG Spectrix RGB 32Gb 3200MHz</p>
-              <p>SSD - GIGABYTE SSD 512GB</p>
+            <div className='textDescription'>
+              {place.desc}
             </div>
           </div>
         </div>          

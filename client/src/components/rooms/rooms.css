@@ -1,0 +1,32 @@
+.rooms{
+
+}
+
+.rBody{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    
+}
+
+.roomHolder{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+
+.rooms{
+    
+}
+
+.roomContainer{
+    height: 300px;
+    width: 700px;
+}
+
+.roomItem {
+    font-size: 1.5em;
+}

@@ -6,9 +6,9 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import EditProfileForm from "./EditForm/EditProfileForm";
 import UserInfo from "./UserInfo/UserInfo";
 import moment from "moment"; // Импортируем moment
+
 
 function ProfilePage() {
   const { user, dispatch } = useContext(AuthContext);
@@ -16,11 +16,8 @@ function ProfilePage() {
   const location = useLocation();
   const id = user._id; // Получаем идентификатор пользователя из контекста
   const [bookings, setBookings] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-
-  const handleGoBack = () => {
-    navigate("/");
-  };
+  const id2 = location.pathname.split("/")[2];
+  console.log("ProfilePage rendered");
 
   const handleDeleteAccount = async () => {
     if (window.confirm("Вы уверены, что хотите удалить свой аккаунт?")) {
@@ -35,12 +32,23 @@ function ProfilePage() {
     }
   };
 
+  const handleCancelBooking = async (bookingId) => {
+    if (window.confirm("Вы уверены, что хотите отменить это бронирование?")) {
+      try {
+        await axios.delete(`/bookings/${bookingId}`);
+        setBookings(bookings.filter(booking => booking._id !== bookingId));
+        alert("Бронирование успешно отменено");
+      } catch (error) {
+        console.error("Ошибка при отмене бронирования:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {        
         const response = await axios.get(`/bookings/userbookings/${id}`);
         setBookings(response.data);
-        console.log(response, 'трай блок сработал')
         
       } catch (error) {
         console.error("Ошибка при получении бронирований:", error);
@@ -48,8 +56,7 @@ function ProfilePage() {
     };
     fetchBookings();
   }, [id]);
-  console.log(bookings, 'мы получили данные о бронировании с БД')
-
+  
   return (
     <div className="profile">
       <Navbar />
@@ -62,6 +69,7 @@ function ProfilePage() {
           </div>
         </div>
         <h2>Профиль</h2>
+        <span className="hline"/>
         <UserInfo />
         <div className="userButtun">
           <button
@@ -71,6 +79,7 @@ function ProfilePage() {
           </button>
         </div>
         <h2>Мои бронирования</h2>
+        <span className="hline"/>
         <div className="BookingInfo">
         <p>Место:</p>
         <p>Дата:</p>
@@ -88,15 +97,18 @@ function ProfilePage() {
                   <div className="pBookingItem"> {booking.startTime} - {booking.endTime}</div>
                   <div className="pBookingItem"> {booking.totalTime} ч.</div>
                   <div className="pBookingItem"> {booking.amount} руб.</div>
-                  <div className="pBookingItem"> Отменить </div>
+                  <div className="pBookingItem"> 
+                    <button onClick={() => handleCancelBooking(booking._id)}>Отменить</button>
+                  </div>
                 </div>
               ))}
             </div>          
           ) : (
             <div className="pBookingHolder">
-               <p>У вас нет бронирований.</p>
+              <div className="">
+                <p>У вас нет бронирований.</p>\
+              </div>
             </div>
-
           )}
       </div>
       <Footer />
