@@ -86,10 +86,10 @@ export const login = async (req, res, next) => {
 }
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+service: 'gmail',
     auth: {
-      user: "ariel19107995@gmail.com",
-      pass: "qlde megc djna hcfg",
+      user: "dmitry275@gmail.com",
+      pass: "mlqu ohjb rtuj akyj",
     },
   });
   
@@ -120,9 +120,9 @@ function generateSixDigitCode() {
         }
 
         const mailOptions = {
-            from: "d1vinesss",
+            from: "CyberSpace",
             to: user.email,
-            subject: "Haven. Код для сброса пароля",
+            subject: "CyberSpace. Сброс пароля",
             text: `Ваш код для сброса пароля: ${code}`,
         };
 

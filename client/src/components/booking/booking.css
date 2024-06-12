@@ -33,21 +33,25 @@
     justify-content: center;
 }
 
-.computerDescription{
+.computerDescription {
+    color: white;
+    padding: 5px;
     width: 250px;
-    height: inherit;
+    height: 110px;
     display: flex;
-    align-items : center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1em;
+    cursor: pointer; 
 }
 
-.textDescription{
-    color: white;
-    width: 200px; /* Установите нужную ширину контейнера */
-    height: 140px;
-    overflow: hidden; /* Обрезает содержимое, выходящее за пределы контейнера */
-    text-overflow: ellipsis; /* Добавляет многоточие в конце обрезанного текста */
+.computerDescription.expanded {
+    height: auto; /* Автоматическая высота для показа всего текста */
 }
+
 
 .bFooterContainer{
     padding: 20px;

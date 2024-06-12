@@ -102,10 +102,16 @@ const Booking = ({ exAtr, id, fill, onClose, changeColor }) => {
             <Pc/>
           </div>
           <div className='computerDescription'>
-            <div className='textDescription'>
-              {place.desc}
-            </div>
-          </div>
+            {place.desc ? (
+              place.desc.split(',').map((substring, index) => (
+                    <div key={index}>
+                      {substring.trim()}
+                    </div>
+                ))
+            ) : (
+                <div>Описание недоступно</div>
+            )}
+          </div>       
         </div>          
         <div className='bFooterContainer'>
           <div className='inputContainer'>            
